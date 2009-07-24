@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Fri Jul 24 13:33:18 EDT 2009
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=Tools_fat.jar
+manifest.mergeall=true
+manifest.mainclass=com.ohsaka.ColorChange
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=

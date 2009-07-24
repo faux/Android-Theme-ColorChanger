@@ -4,6 +4,5 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="baksmali-0.93.jar"/>
 	<classpathentry kind="lib" path="smali-0.92.jar"/>
-	<classpathentry kind="lib" path="testsign.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
