@@ -16,7 +16,7 @@
     -->
     <!-- uncomment the above lines to use ANT outside of Eclipse -->
     <target name="main">
-        <fatjar.build output="Tools_fat.jar">
+        <fatjar.build output="colorchange.jar">
             <fatjar.manifest mainclass="com.ohsaka.ColorChange"/>
             <fatjar.filesource path="C:\CFusionMX7\wwwroot\Tools\bin" relpath=""/>
             <fatjar.jarsource file="C:\CFusionMX7\wwwroot\Tools\baksmali-0.93.jar" relpath=""/>
