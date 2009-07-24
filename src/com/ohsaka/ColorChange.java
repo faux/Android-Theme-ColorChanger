@@ -37,6 +37,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
+import org.jf.testsign.TestSign;
+
 public class ColorChange {
 
 	/**
@@ -112,20 +114,6 @@ public class ColorChange {
 		}
 		if (!updateFile.canRead()) {
 			System.out.println("Error: file:" + args[0] + " can not be read");
-			return;
-		}
-
-		// check for required library files
-		if (!new File("baksmali-0.93.jar").exists()) {
-			System.out.println("baksmali-0.93.jar needs to be in same directory as this jar");
-			return;
-		}
-		if (!new File("smali-0.92.jar").exists()) {
-			System.out.println("baksmali-0.93.jar needs to be in same directory as this jar");
-			return;
-		}
-		if (!new File("testsign.jar").exists()) {
-			System.out.println("testsign.jar needs to be in same directory as this jar");
 			return;
 		}
 
@@ -243,8 +231,9 @@ public class ColorChange {
 		zip(updateFile, tempDir, TEMPDIR, true);
 
 		// Resign the update file
-		String command = "java -cp testsign.jar testsign " + getFileNameWithoutExtension(updateFile.getAbsolutePath()) + "-new.zip";
-		executeCommand(command);
+		TestSign.main(new String[] { getFileNameWithoutExtension(updateFile
+				.getAbsolutePath())
+				+ "-new.zip" });
 		System.out.println("Finished resigning update file\n");
 
 		System.out.println("\nAutomagic complete! Enjoy.  -- Ohsaka");
@@ -259,9 +248,10 @@ public class ColorChange {
 			System.out.println("found classes.dex");
 		}
 
+		System.out.println("un-dexing...");
 		// Un-dex services.jar
-		String command = "java -jar baksmali-0.93.jar -o " + servicesDir.getAbsolutePath() + " " + classesDex.getAbsolutePath();
-		executeCommand(command);
+		org.jf.baksmali.main.main(new String[] { "-o",
+				servicesDir.getAbsolutePath(), classesDex.getAbsolutePath() });
 		System.out.println("Finished un-dexing classes.dex\n");
 
 		// Edit the StatusBarIcon.smali file
@@ -404,8 +394,9 @@ public class ColorChange {
 		System.out.println("Finished editing the StatusBarService.smali file\n");
 
 		// Re-dex services.jar
-		command = "java -Xmx512M -jar smali-0.92.jar " + servicesDir.getAbsolutePath() + " -o " + classesDex.getAbsolutePath();
-		executeCommand(command);
+		System.out.println("re-dexing...");
+		org.jf.smali.main.main(new String[] { servicesDir.getAbsolutePath(),
+				"-o", classesDex.getAbsolutePath() });
 		System.out.println("Finished re-dexing classes.dex\n");
 
 		deleteDir(new File(servicesDir.getAbsolutePath() + SLASH + "com"));
@@ -742,26 +733,6 @@ public class ColorChange {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
-		}
-	}
-
-	private static void executeCommand(String command) {
-		try {
-			String line, output = "";
-			System.out.println("Executing in shell: " + command + "\n");
-			Process p = Runtime.getRuntime().exec(command);
-			BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
-			while ((line = input.readLine()) != null) {
-				output += (line + '\n');
-			}
-			input.close();
-			if (output.length() > 0) {
-				System.out.println("Un-dex output: " + output);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("\n\nError running command: " + command);
-			System.exit(1);
 		}
 	}
 
