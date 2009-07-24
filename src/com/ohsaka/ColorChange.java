@@ -84,6 +84,11 @@ public class ColorChange {
 			System.out.println("\tThis will change the clear notifications button text to white and network name (usually T-Mobile) to blue");
 			return;
 		}
+		long heapMaxSize = Runtime.getRuntime().maxMemory();
+		if(heapMaxSize < 512000000){
+			System.err.println("ColorChange: MaxMemory to small: Please add -Xmx512m to the command line");
+			System.exit(1);
+		}
 
 		// check RGB value(s)
 		for (int i = 1; i < args.length; i++) {
