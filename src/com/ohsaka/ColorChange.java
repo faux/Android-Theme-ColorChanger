@@ -46,12 +46,13 @@ public class ColorChange {
 	 */
 	public final static String VERSION = "v1.0";
 	public final static char[] validChars = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
-	public final static String TEMPDIR = System.getProperty("java.io.tmpdir") + "cc-temp";
 	public final static String SLASH = System.getProperty("file.separator");
+	public final static String TEMPDIR = System.getProperty("java.io.tmpdir") + SLASH + "cc-temp";
 	public final static String NL = "\n"; // use unix style even on windows
 	public final static boolean debug = false;
 
 	public static void main(String[] args) {
+		
 		System.out.println("\n************************************\n**  Color Changer " + VERSION + " by Ohsaka  **\n************************************\n");
 
 		if (args.length < 2 || args.length > 10) {
