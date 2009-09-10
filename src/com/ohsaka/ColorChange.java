@@ -338,37 +338,37 @@ public class ColorChange {
 				}
 
 				// ongoing color
-				if (line.contains(".line 347")) {
+				if (line.contains(".line 277")) {
 					System.out.println("found line: " + line);
 					bufWrite.write(line + NL);
 					modifySingleColorSection(bufRead, bufWrite, ongoingColor);
 				}
 				// latest color
-				if (line.contains(".line 349")) {
+				if (line.contains(".line 279")) {
 					System.out.println("found line: " + line);
 					bufWrite.write(line + NL);
 					modifySingleColorSection(bufRead, bufWrite, latestColor);
 				}
 				// no notifications color
-				if (line.contains(".line 351")) {
+				if (line.contains(".line 281")) {
 					System.out.println("found line: " + line);
 					bufWrite.write(line + NL);
 					modifySingleColorSection(bufRead, bufWrite, noNotifsColor);
 				}
 				// clear button text color
-				if (line.contains(".line 352")) {
+				if (line.contains(".line 282")) {
 					System.out.println("found line: " + line);
 					bufWrite.write(line + NL);
 					modifySingleColorSection(bufRead, bufWrite, clearButTextColor);
 				}
 				// roam? text color
-				if (line.contains(".line 354")) {
+				if (line.contains(".line 284")) {
 					System.out.println("found line: " + line);
 					bufWrite.write(line + NL);
 					modifySingleColorSection(bufRead, bufWrite, roamingColor);
 				}
 				// network text color
-				if (line.contains(".line 355")) {
+				if (line.contains(".line 285")) {
 					System.out.println("found line: " + line);
 					bufWrite.write(line + NL);
 					modifySingleColorSection(bufRead, bufWrite, networkNameColor);
