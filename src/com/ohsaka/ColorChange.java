@@ -52,7 +52,7 @@ public class ColorChange {
 	public final static boolean debug = false;
 
 	public static void main(String[] args) {
-		System.out.println("\n************************************\n**  Color Changer " + VERSION + " by Ohsaka  **\n************************************\n");
+		System.out.println("\n************************************\n**  Color Changer " + VERSION + " by Ohsaka/Faux  **\n************************************\n");
 
 		if (args.length < 2 || args.length > 10) {
 			System.out.println("Usages: ");
