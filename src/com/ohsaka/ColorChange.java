@@ -27,7 +27,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Enumeration;
@@ -234,7 +233,7 @@ public class ColorChange {
 		}
 
 		// zip new update file back up
-		zip(updateFile, tempDir, TEMPDIR, true);
+		zip(updateFile, tempDir, true);
 
 		// Resign the update file
 		TestSign.main(new String[] { getFileNameWithoutExtension(updateFile
@@ -408,7 +407,7 @@ public class ColorChange {
 		deleteDir(new File(servicesDir.getAbsolutePath() + SLASH + "com"));
 		System.out.println("Deleted dex out directory");
 
-		zip(servicesFile, servicesDir, servicesDir.getAbsolutePath(), false);
+		zip(servicesFile, servicesDir, false);
 		System.out.println("Rezipped services.jars");
 		deleteDir(servicesDir);
 		System.out.println("\n**** END SERVICES.JAR ******");
@@ -552,7 +551,7 @@ public class ColorChange {
 		}
 		System.out.println("Finished editing the status_bar.xml file\n");
 
-		zip(frameworkFile, frameworkDir, frameworkDir.getAbsolutePath(), false);
+		zip(frameworkFile, frameworkDir, false);
 		System.out.println("Rezipped framework-res.apk");
 
 		deleteDir(frameworkDir);
@@ -622,8 +621,9 @@ public class ColorChange {
 		return newName.replace('\\', '/');
 	}
 
-	private static boolean zip(File updateFile, File zipRootDir, String ignoreDirName, boolean addNewToEndOfFileName) {
+	private static boolean zip(File updateFile, File zipRootDir, boolean addNewToEndOfFileName) {
 		try {
+			String ignoreDirName = zipRootDir.getAbsolutePath();
 			List<File> fileList = getFileListingNoSort(zipRootDir);
 			// Specify files to be zipped
 			String[] filesToZip = new String[fileList.size()];
